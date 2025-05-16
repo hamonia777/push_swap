@@ -19,7 +19,7 @@ void ss(s_list **a, s_list **b)
 }
 void pa(s_list **a, s_list **b)
 {
-    a->next = b;
+    
 
 }
 void pb(s_list **b)
