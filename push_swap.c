@@ -6,7 +6,7 @@
 /*   By: jinwpark <jinwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:22:06 by jinwpark          #+#    #+#             */
-/*   Updated: 2025/05/16 23:46:27 by jinwpark         ###   ########.fr       */
+/*   Updated: 2025/05/20 23:42:33 by jinwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,34 +33,37 @@ str[i] == '-' || str[i] == '+' || str[i] == ' '))
 		(*count)++;
 	arr = malloc(sizeof(long) * (*count));
 	i = 0;
-	while (i < *count)
-		arr[i] = ft_atol(split_str[i++]);
+	while (i < (size_t)(*count))
+	{
+		arr[i] = ft_atol(split_str[i]);
+		i++;
+	}
 	free_split(split_str);
 	return (arr);
 }
 
-int	*check_part_two(long *primo, int count)
+int	*check_part_two(long *one, int len)
 {
 	int	i;
 	int	j;
 	int	*arr;
 
 	i = 0;
-	while (primo[i])
+	while (i < len)
 	{
-		if (primo[i] > INT_MAX || primo[i] < INT_MIN)
+		if (one[i] > INT_MAX || one[i] < INT_MIN)
 			return (NULL);
 		j = i + 1;
-		while (primo[j])
+		while (j < len)
 		{
-			if (primo[i] == primo[j])
+			if (one[i] == one[j])
 				return (NULL);
 			j++;
 		}
 		i++;
 	}
-	arr = malloc(sizeof(int) * i);
-	arr = jw_intcpy(arr, primo, i);
+	arr = malloc(sizeof(int) * len);
+	arr = jw_intcpy(arr, one, len);
 	return (arr);
 }
 
@@ -82,24 +85,26 @@ char	*make_str(int argc, char *argv[])
 	}
 	return (str);
 }
-
 int	main(int argc, char *argv[])
 {
 	char	*str;
-	long	*primo;
+	long	*one;
 	int		*arr;
-	Info	info;
+	int	len;
 
 	str = make_str(argc, argv);
-	primo = check_part_one(str, &info.len);
+	one = check_part_one(str, &len);
 	free(str);
-	info.arr = check_part_two(primo, info.len);
-	if (primo == NULL || info.arr == NULL || argc == 1)
+	arr = check_part_two(one, len);
+	if (one == NULL || arr == NULL || argc == 1)
 	{
 		free(arr);
-		free(primo);
+		free(one);
 		write(1, "error\n", 6);
 		return (0);
 	}
-	run_sort(info);
+	run_sort(arr,len);
+	free(arr);
+	free(one);
+	return (0);
 }

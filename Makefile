@@ -1,14 +1,20 @@
 NAME		= push_swap
 LIBFTDIR	= ./libft
 LIBFTFILE	= libft.a
-
+LIBFT	=$(LIBFTDIR)/$(LIBFTFILE)
 CC		= cc
 CFLAGS	= -Wall -Wextra -Werror
 AR		= ar rcs
 RM		= rm -f
 
-SRCS	= main.c \
+SRCS	= push_swap.c \
 			linked_list.c \
+			push_swap_util.c \
+			push.c \
+			rev_rotate.c \
+			rotate.c \
+			sort.c \
+			swap.c \
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -17,10 +23,7 @@ OBJS	= $(SRCS:.c=.o)
 
 $(NAME) : $(OBJS)
 	make -C $(LIBFTDIR)
-	cp $(LIBFTDIR)/$(LIBFTFILE) $(NAME)
-	$(AR) $@ $?
-
-bonus :
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(LIBFT)
 
 all : $(NAME)
 

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   linked_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jinwpark <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jinwpark <jinwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:43:53 by jinwpark          #+#    #+#             */
-/*   Updated: 2025/05/16 22:52:25 by jinwpark         ###   ########.fr       */
+/*   Updated: 2025/05/20 22:42:13 by jinwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft/libft.h"
 #include "push_swap.h"
 
-s_list	*ft_lstnew(int data)
+t_list	*ft_lstnew(int data)
 {
-	s_list	*list;
+	t_list	*list;
 
-	list = (s_list *)malloc(sizeof(s_list));
+	list = (t_list *)malloc(sizeof(t_list));
 	if (!list)
 		return (NULL);
 	list->data = data;
@@ -25,15 +25,58 @@ s_list	*ft_lstnew(int data)
 	return (list);
 }
 
-s_list	add_node(s_list **node, s_list *new)
+void	add_node(t_list **node, t_list *new)
 {
-	new->next = *node;
-	*node = new;
+	t_list	*cur;
+
+	cur = *node;
+	while (cur->next)
+		cur = cur->next;
+	cur->next = new;
 }
 
-void	free_list(s_list **node)
+void	delete_node(t_list **node)
 {
-	s_list	*tmp;
+	t_list	*prev;
+	t_list	*cur;
+
+	if (!node || !*node)
+		return ;
+	cur = *node;
+	prev = NULL;
+	if (cur->next == NULL)
+	{
+		free(cur);
+		*node = NULL;
+		return ;
+	}
+	while (*node)
+	{
+		prev = cur;
+		cur = cur->next;
+	}
+	free(cur);
+	prev->next = NULL;
+}
+
+t_list	*find_node(t_list *node, int index)
+{
+	t_list	*new;
+	int		i;
+
+	i = 0;
+	new = node;
+	while (new && i < index)
+	{
+		new = new->next;
+		i++;
+	}
+	return (new);
+}
+
+void	free_list(t_list **node)
+{
+	t_list	*tmp;
 
 	while (*node)
 	{
