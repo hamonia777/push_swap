@@ -13,69 +13,84 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
+static int	*index_mapping(int *arr, int len)
+{
+	int	*sorted;
+	int	*indexed;
+	int	i, j;
+
+	sorted = malloc(sizeof(int) * len);
+	indexed = malloc(sizeof(int) * len);
+	if (!sorted || !indexed)
+		return (NULL);
+
+	// 원본 배열 복사 후 정렬
+	for (i = 0; i < len; i++)
+		sorted[i] = arr[i];
+	for (i = 0; i < len - 1; i++)
+		for (j = i + 1; j < len; j++)
+			if (sorted[i] > sorted[j])
+			{
+				int tmp = sorted[i];
+				sorted[i] = sorted[j];
+				sorted[j] = tmp;
+			}
+
+	// 인덱스 할당
+	for (i = 0; i < len; i++)
+	{
+		for (j = 0; j < len; j++)
+			if (arr[i] == sorted[j])
+				indexed[i] = j;
+	}
+	free(sorted);
+	return (indexed);
+}
+
+// 2. 비트 수 계산
+static int get_max_bits(int max)
+{
+	int bits = 0;
+	while ((max >> bits) != 0)
+		bits++;
+	return (bits);
+}
+
+// 3. 라딕스 정렬 메인 함수
 void	run_sort(int *arr, int len)
 {
-	quick_sort(arr, 0, len - 1);
-}
+	t_list *a = NULL;
+	t_list *b = NULL;
+	int		*iarr = index_mapping(arr, len);
+	int		max_bits = get_max_bits(len - 1);
+	int		i, j;
 
-void	swap(int *a, int *b)
-{
-	int	tmp;
+	// 인덱스를 리스트 A에 삽입
+	for (i = 0; i < len; i++)
+		add_node(&a, ft_lstnew(iarr[i]));
 
-	tmp = *a;
-	*a = *b;
-	*b = tmp;
-}
-
-int	init(int *arr, int start, int end)
-{
-	int	pivot;
-	int	left;
-	int	right;
-
-	left = start + 1;
-	right = end;
-	pivot = arr[start];
-	while (left < right)
+	for (i = 0; i < max_bits; i++)
 	{
-		while (left <= right && arr[left] <= pivot)
-			left++;
-		while (left <= right && arr[right] > pivot)
-			right--;
-		if (left < right)
+		j = 0;
+		while (j++ < len)
 		{
-			swap(&arr[left], &arr[right]);
-			left++;
-			right--;
+			if (((a->data >> i) & 1) == 0)
+			{
+				pb(&a, &b);
+				write(1, "pb\n", 3);
+			}
+			else
+			{
+				ra(&a);
+				write(1, "ra\n", 3);
+			}
+		}
+		while (b)
+		{
+			pa(&a, &b);
+			write(1, "pa\n", 3);
 		}
 	}
-	swap(&arr[start], &arr[right]);
-	return (right);
+	free(iarr);
+	free_list(&a);
 }
-
-void	quick_sort(int *arr, int start, int end)
-{
-	int	pivot;
-
-	if (start < end)
-	{
-		pivot = init(arr, start, end);
-		quick_sort(arr, start, pivot - 1);
-		quick_sort(arr, pivot + 1, end);
-	}
-}
-
-// #include<stdio.h>
-// int main()
-// {
-//     int a[] = {1,3,2,6,0,4};
-//     int i = 0;
-
-//     quick_sort(a,0,6);
-
-//     while(i<6)
-//     {
-//         printf("%d ",a[i]);
-//         i++;
-//     }
-// }

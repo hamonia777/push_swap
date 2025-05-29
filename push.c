@@ -17,6 +17,8 @@ void	pa(t_list **a, t_list **b)
 {
 	t_list	*tmp;
 
+	if (!*b)
+		return ;
 	tmp = *b;
 	*b = (*b)->next;
 	tmp->next = *a;
@@ -25,5 +27,7 @@ void	pa(t_list **a, t_list **b)
 
 void	pb(t_list **a, t_list **b)
 {
-	pa(a, b);
+	if (!*a)
+		return ;
+	pa(b, a);
 }

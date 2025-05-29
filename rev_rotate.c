@@ -18,6 +18,8 @@ void	rra(t_list **a)
 	t_list	*first;
 	t_list	*last;
 
+	if (!a || !*a || !(*a)->next)
+		return ;
 	first = NULL;
 	last = *a;
 	while (last->next)
@@ -29,6 +31,7 @@ void	rra(t_list **a)
 	last->next = *a;
 	*a = last;
 }
+
 
 void	rrb(t_list **b)
 {

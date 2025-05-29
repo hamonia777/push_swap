@@ -27,8 +27,13 @@ t_list	*ft_lstnew(int data)
 
 void	add_node(t_list **node, t_list *new)
 {
-	t_list	*cur;
+	t_list *cur;
 
+	if (!*node)
+	{
+		*node = new;
+		return;
+	}
 	cur = *node;
 	while (cur->next)
 		cur = cur->next;
