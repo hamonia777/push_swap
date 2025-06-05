@@ -33,6 +33,7 @@ char	*make_str(int argc, char *argv[]);
 int		*jw_intcpy(int *dest, long *src, int len);
 int	*check_part_two(long *one, int len);
 int	init(int *arr, int start, int end);
+int is_sorted(int *arr,int len);
 t_list	*ft_lstnew(int data);
 t_list	*find_node(t_list *node, int index);
 void	delete_node(t_list **node);

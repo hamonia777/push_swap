@@ -59,3 +59,17 @@ int	*jw_intcpy(int *dest, long *src, int len)
 	}
 	return (dest);
 }
+
+int is_sorted(int *arr,int len)
+{
+	int i;
+	i = 0;
+	while(i<len-1)
+	{
+		if(arr[i]<arr[i+1])
+			i++;
+		else
+			return 0;
+	}
+	return 1;
+}

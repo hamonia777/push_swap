@@ -13,7 +13,7 @@
 #include "push_swap.h"
 #include "libft/libft.h"
 
-static int	*index_mapping(int *arr, int len)
+int	*index_mapping(int *arr, int len)
 {
 	int	*sorted;
 	int	*indexed;
@@ -24,7 +24,6 @@ static int	*index_mapping(int *arr, int len)
 	if (!sorted || !indexed)
 		return (NULL);
 
-	// 원본 배열 복사 후 정렬
 	for (i = 0; i < len; i++)
 		sorted[i] = arr[i];
 	for (i = 0; i < len - 1; i++)
@@ -36,7 +35,6 @@ static int	*index_mapping(int *arr, int len)
 				sorted[j] = tmp;
 			}
 
-	// 인덱스 할당
 	for (i = 0; i < len; i++)
 	{
 		for (j = 0; j < len; j++)
@@ -47,8 +45,7 @@ static int	*index_mapping(int *arr, int len)
 	return (indexed);
 }
 
-// 2. 비트 수 계산
-static int get_max_bits(int max)
+int get_max_bits(int max)
 {
 	int bits = 0;
 	while ((max >> bits) != 0)
@@ -56,7 +53,6 @@ static int get_max_bits(int max)
 	return (bits);
 }
 
-// 3. 라딕스 정렬 메인 함수
 void	run_sort(int *arr, int len)
 {
 	t_list *a = NULL;
@@ -65,7 +61,6 @@ void	run_sort(int *arr, int len)
 	int		max_bits = get_max_bits(len - 1);
 	int		i, j;
 
-	// 인덱스를 리스트 A에 삽입
 	for (i = 0; i < len; i++)
 		add_node(&a, ft_lstnew(iarr[i]));
 

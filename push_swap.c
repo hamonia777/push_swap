@@ -103,7 +103,8 @@ int	main(int argc, char *argv[])
 		write(1, "error\n", 6);
 		return (0);
 	}
-	run_sort(arr,len);
+	if(!is_sorted(arr,len))
+		run_sort(arr,len);
 	free(arr);
 	free(one);
 	return (0);
