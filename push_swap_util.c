@@ -6,7 +6,7 @@
 /*   By: jinwpark <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:36:30 by jinwpark          #+#    #+#             */
-/*   Updated: 2025/05/16 22:43:00 by jinwpark         ###   ########.fr       */
+/*   Updated: 2025/06/07 23:38:39 by jinwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,17 @@ int	*jw_intcpy(int *dest, long *src, int len)
 	return (dest);
 }
 
-int is_sorted(int *arr,int len)
+int	is_sorted(int *arr, int len)
 {
-	int i;
+	int	i;
+
 	i = 0;
-	while(i<len-1)
+	while (i < len - 1)
 	{
-		if(arr[i]<arr[i+1])
+		if (arr[i] < arr[i + 1])
 			i++;
 		else
-			return 0;
+			return (0);
 	}
-	return 1;
+	return (1);
 }

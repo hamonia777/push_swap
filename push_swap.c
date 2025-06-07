@@ -6,7 +6,7 @@
 /*   By: jinwpark <jinwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:22:06 by jinwpark          #+#    #+#             */
-/*   Updated: 2025/05/20 23:42:33 by jinwpark         ###   ########.fr       */
+/*   Updated: 2025/06/08 00:34:24 by jinwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,13 @@ char	*make_str(int argc, char *argv[])
 	}
 	return (str);
 }
+
 int	main(int argc, char *argv[])
 {
 	char	*str;
 	long	*one;
 	int		*arr;
-	int	len;
+	int		len;
 
 	str = make_str(argc, argv);
 	one = check_part_one(str, &len);
@@ -103,8 +104,8 @@ int	main(int argc, char *argv[])
 		write(1, "error\n", 6);
 		return (0);
 	}
-	if(!is_sorted(arr,len))
-		run_sort(arr,len);
+	if (!is_sorted(arr, len))
+		run_sort(arr, len);
 	free(arr);
 	free(one);
 	return (0);

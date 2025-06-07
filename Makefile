@@ -15,6 +15,8 @@ SRCS	= push_swap.c \
 			rotate.c \
 			sort.c \
 			swap.c \
+			mapping.c \
+			hard_coding.c \
 
 OBJS	= $(SRCS:.c=.o)
 

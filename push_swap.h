@@ -6,7 +6,7 @@
 /*   By: jinwpark <jinwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:18:25 by jinwpark          #+#    #+#             */
-/*   Updated: 2025/05/20 23:23:36 by jinwpark         ###   ########.fr       */
+/*   Updated: 2025/06/08 01:23:51 by jinwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ long	*check_part_one(char *str, int *count);
 long	ft_atol(const	char	*str);
 char	*make_str(int argc, char *argv[]);
 int		*jw_intcpy(int *dest, long *src, int len);
-int	*check_part_two(long *one, int len);
-int	init(int *arr, int start, int end);
-int is_sorted(int *arr,int len);
+int		*index_mapping(int *arr, int len);
+int		*check_part_two(long *one, int len);
+int		init(int *arr, int start, int end);
+int		is_sorted(int *arr, int len);
 t_list	*ft_lstnew(int data);
 t_list	*find_node(t_list *node, int index);
+void	hard_coding(int *arr, int len);
 void	delete_node(t_list **node);
 void	add_node(t_list **node, t_list *new);
 void	free_split(char **split);

@@ -6,7 +6,7 @@
 /*   By: jinwpark <jinwpark@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 22:43:53 by jinwpark          #+#    #+#             */
-/*   Updated: 2025/05/20 22:42:13 by jinwpark         ###   ########.fr       */
+/*   Updated: 2025/06/07 23:38:06 by jinwpark         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ t_list	*ft_lstnew(int data)
 
 void	add_node(t_list **node, t_list *new)
 {
-	t_list *cur;
+	t_list	*cur;
 
 	if (!*node)
 	{
 		*node = new;
-		return;
+		return ;
 	}
 	cur = *node;
 	while (cur->next)
